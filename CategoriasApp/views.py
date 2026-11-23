@@ -1,6 +1,8 @@
 from django.contrib import messages
+from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from decimal import Decimal
 
 from .forms import PreciosForm, VolumenForm
 from .models import Precios, Volumen
@@ -69,9 +71,13 @@ def crear(request) -> HttpResponse:
     formulario = VolumenForm(request.POST or None)
     formulario_precio = PreciosForm(request.POST or None)
     if request.method == 'POST' and formulario.is_valid() and formulario_precio.is_valid():
-        producto = formulario.save()
-        if formulario_precio.cleaned_data.get('precio') is not None:
-            Precios.objects.create(volumen=producto, **formulario_precio.cleaned_data)
+        # corrección: ahora se utiliza transaction.atomic() para asegurar que ambas operaciones de guardado se realicen de manera atómica
+        with transaction.atomic():
+            producto = formulario.save()
+            if formulario_precio.cleaned_data.get('precio') is not None:
+                precio = formulario_precio.save(commit=False)
+                precio.volumen = producto
+                precio.save()
         messages.success(request, 'Producto creado correctamente.')
         return redirect('categorias:acceso')
     return render(request, 'crear.html', {'formulario': formulario, 'formulario_precio': formulario_precio})
@@ -105,17 +111,18 @@ def eliminar(request, producto_id) -> HttpResponse:
 
 def _productos_con_precio():
     """Combina el inventario con el precio editable desde el admin."""
-    return [
-        {
+    productos = []
+    for producto in Volumen.objects.select_related('precio').order_by('id'):
+        precio = getattr(producto, 'precio', None)
+        productos.append({
             'id': producto.id,
             'nombre': producto.nombre,
             'categoria': producto.categoria,
-            'stock': producto.stock,
-            'tiene_precio': hasattr(producto, 'precio'),
-            'precio': producto.precio.precio if hasattr(producto, 'precio') else None,
-            'moneda': producto.precio.moneda if hasattr(producto, 'precio') else None,
-            'observacion': producto.precio.observacion if hasattr(producto, 'precio') else '',
-        }
-        for producto in Volumen.objects.select_related('precio').order_by('id')
-    ]
+            'stock': int(producto.stock),
+            'tiene_precio': precio is not None,
+            'precio': Decimal(precio.precio) if precio is not None else None,
+            'moneda': precio.moneda if precio is not None else None,
+            'observacion': precio.observacion if precio is not None else '',
+        })
+    return productos
 
