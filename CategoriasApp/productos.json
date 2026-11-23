@@ -1,0 +1,182 @@
+[
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 1,
+        "fields": {
+            "nombre": "Martillo de goma",
+            "categoria": "Herramientas",
+            "stock": 45
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 2,
+        "fields": {
+            "nombre": "Destornillador Phillips",
+            "categoria": "Herramientas",
+            "stock": 120
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 3,
+        "fields": {
+            "nombre": "Cemento gris 50kg",
+            "categoria": "Materiales de construcción",
+            "stock": 200
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 4,
+        "fields": {
+            "nombre": "Arena fina 1 m³",
+            "categoria": "Materiales de construcción",
+            "stock": 30
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 5,
+        "fields": {
+            "nombre": "Pintura blanca mate 4L",
+            "categoria": "Pinturas",
+            "stock": 0
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 6,
+        "fields": {
+            "nombre": "Brocha plana 3 pulgadas",
+            "categoria": "Herramientas",
+            "stock": 85
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 7,
+        "fields": {
+            "nombre": "Tubo PVC 3 pulgadas",
+            "categoria": "Plomería",
+            "stock": 150
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 8,
+        "fields": {
+            "nombre": "Tornillo 3 pulgadas (caja 1kg)",
+            "categoria": "Tornillería",
+            "stock": 200
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 9,
+        "fields": {
+            "nombre": "Bisagra de hierro",
+            "categoria": "Ferretería",
+            "stock": 95
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 10,
+        "fields": {
+            "nombre": "Cerrojo de seguridad",
+            "categoria": "Ferretería",
+            "stock": 40
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 11,
+        "fields": {
+            "nombre": "Cinta de embalaje 48mm",
+            "categoria": "Embalaje",
+            "stock": 300
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 12,
+        "fields": {
+            "nombre": "Clavo galvanizado 2 pulgadas (kg)",
+            "categoria": "Tornillería",
+            "stock": 180
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 13,
+        "fields": {
+            "nombre": "Llave inglesa 12 pulgadas",
+            "categoria": "Herramientas",
+            "stock": 35
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 14,
+        "fields": {
+            "nombre": "Serrucho manual",
+            "categoria": "Herramientas",
+            "stock": 50
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 15,
+        "fields": {
+            "nombre": "Nivel de burbuja",
+            "categoria": "Herramientas",
+            "stock": 70
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 16,
+        "fields": {
+            "nombre": "Espuma expansiva 750ml",
+            "categoria": "Químicos",
+            "stock": 110
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 17,
+        "fields": {
+            "nombre": "Silicona blanca cartuchos",
+            "categoria": "Químicos",
+            "stock": 250
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 18,
+        "fields": {
+            "nombre": "Vidrio templado 6mm m²",
+            "categoria": "Vidrio",
+            "stock": 15
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 19,
+        "fields": {
+            "nombre": "Bisagra de aluminio",
+            "categoria": "Ferretería",
+            "stock": 80
+        }
+    },
+    {
+        "model": "CategoriasApp.volumen",
+        "pk": 20,
+        "fields": {
+            "nombre": "Cinta métrica 5 metros",
+            "categoria": "Herramientas",
+            "stock": 125
+        }
+    }
+]

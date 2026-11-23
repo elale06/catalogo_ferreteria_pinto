@@ -1,0 +1,50 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Ferretería Pinto - Inicio</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Catálogo Ferretería Pinto</h1>
+        <p>Tu ferretería de confianza desde hace más de 20 años</p>
+    </header>
+    
+    <div class="container">
+        <img src="{% static 'images/ferreteria.jpg' %}" alt="Ferretería" class="hero-image">
+        
+        <p class="intro-text">
+            Bienvenido a nuestro catálogo de productos de construcción y ferretería. 
+            Explora nuestras secciones para conocer más sobre nosotros y nuestros productos.
+        </p>
+        
+        <div class="sections-grid">
+            <a href="/negocio/" class="section-card">
+                <h2>Negocio</h2>
+                <p>Conoce más sobre nuestra empresa, servicios y marcas que distribuimos</p>
+            </a>
+            
+            <a href="/categorias/" class="section-card">
+                <h2>Categorías</h2>
+                <p>Explora nuestro catálogo completo de productos organizados por categoría</p>
+            </a>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Ferretería Pinto - Todos los derechos reservados</p>
+        <p>Teléfono: +56 9 12345678 | Email: contacto@ferreteriapinto.cl</p>
+        <p>Dirección: Avenida España 123, Valparaíso, Chile</p>
+        <p>Horario: Lunes a Viernes 8:00 AM - 6:00 PM | Sábado 9:00 AM - 2:00 PM</p>
+        <div class="footer-links">
+            <a href="/">Inicio</a>
+            <a href="/negocio/">Negocio</a>
+            <a href="/categorias/">Categorías</a>
+        </div>
+    </footer>
+</body>
+</html>

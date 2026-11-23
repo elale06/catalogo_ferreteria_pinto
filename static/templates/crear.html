@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <title>Crear producto - Ferreteria Pinto</title>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="brand" href="{% url 'categorias:volumen' %}">Pinto<span>.</span></a><span class="header-tag">Panel de inventario</span></div></header>
+<main class="container">
+    <div class="page-heading"><div><p class="eyebrow">Nuevo registro</p><h1>Crear producto</h1><p class="muted">Añade el producto y su precio de venta en un solo paso.</p></div><a class="button button-ghost" href="{% url 'categorias:acceso' %}">Volver a gestión</a></div>
+    <form method="post">
+        {% csrf_token %}
+        {% if formulario.errors or formulario_precio.errors %}<div class="form-errors">Revisa los campos marcados antes de continuar.</div>{% endif %}
+        <div class="form-grid"><section class="form-section"><h2>Datos del producto</h2>{{ formulario.as_p }}</section><section class="form-section price-section"><h2>Precio de venta</h2>{{ formulario_precio.as_p }}<p class="field-help">El precio se guardará en la base de datos junto al producto.</p></section></div>
+        <div class="form-actions"><button class="button button-primary" type="submit">Guardar producto</button><a class="button button-ghost" href="{% url 'categorias:acceso' %}">Cancelar</a></div>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,78 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Productos - Ferretería Pinto</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Catálogo de Productos - Ferretería Pinto</h1>
+    </header>
+    
+    <div class="container">
+        <div class="nav-links">
+            <a href="/">← Volver a Inicio</a>
+            <a href="/categorias/resumen/">Ver Resumen</a>
+            <a href="{% url 'categorias:acceso' %}">Gestionar Productos</a>
+        </div>
+        
+        {% if productos %}
+            <p>Total de productos: <strong>{{ productos|length }}</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr {% if producto.stock == 0 %}class="sin-stock"{% else %}class="con-stock"{% endif %}>
+                        <td>{{ producto.id }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.categoria }}</td>
+                        <td class="precio-cell">
+                            {% if producto.tiene_precio %}
+                                {{ producto.moneda }} ${{ producto.precio|floatformat:0 }}
+                            {% else %}
+                                <span class="precio-pendiente">Por agregar</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ producto.stock }}</td>
+                        <td>
+                            {% if producto.stock > 0 %}
+                                <span class="estado-badge disponible">✓ Disponible</span>
+                            {% else %}
+                                <span class="estado-badge no-disponible">✗ Sin Stock</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hay productos disponibles</p>
+        {% endif %}
+        
+        <a href="/" class="back-link">← Volver a Inicio</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Ferretería Pinto - Todos los derechos reservados</p>
+        <p>Teléfono: +56 9 12345678 | Email: contacto@ferreteriapinto.cl</p>
+        <div class="footer-links">
+            <a href="/">Inicio</a>
+            <a href="/negocio/">Negocio</a>
+            <a href="/categorias/">Categorías</a>
+        </div>
+    </footer>
+</body>
+</html>

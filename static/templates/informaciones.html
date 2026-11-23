@@ -1,0 +1,87 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informaciones - Ferretería Pinto</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Informaciones - Ferretería Pinto</h1>
+    </header>
+    
+    <div class="container">
+        <div class="section">
+            <h2>Quiénes Somos</h2>
+            <p>Somos una ferretería con más de 20 años de experiencia en el ramo de la construcción y distribución de materiales. Nos dedicamos a ofrecer productos de calidad a precios competitivos para satisfacer las necesidades de nuestros clientes.</p>
+            <p>Nuestro compromiso es brindar la mejor atención y asesoría en cada compra que realices en nuestro local.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Servicio al Cliente</h2>
+            <p>Nuestro equipo de profesionales está disponible para asesorarte en la selección de los productos que necesitas. Ofrecemos:</p>
+            <ul style="margin-left: 20px; line-height: 1.8;">
+                <li>Entrega a domicilio</li>
+                <li>Asesoría técnica especializada</li>
+                <li>Garantía en nuestros productos</li>
+                <li>Atención personalizada y amable</li>
+                <li>Variedad de formas de pago</li>
+            </ul>
+            <p style="margin-top: 15px;">Estamos comprometidos con tu satisfacción y confianza.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Contáctanos</h2>
+            <div class="contact-info">
+                <p><strong>Teléfono:</strong> +56 9 12345678</p>
+                <p><strong>Email:</strong> contacto@ferreteriapinto.cl</p>
+                <p><strong>Dirección:</strong> Avenida España 123, Valparaíso, Chile</p>
+                <p><strong>Horario de Atención:</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li>Lunes a Viernes: 8:00 AM - 6:00 PM</li>
+                    <li>Sábado: 9:00 AM - 2:00 PM</li>
+                    <li>Domingo: Cerrado</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Marcas que Distribuimos</h2>
+            <p>Trabajamos con las mejores marcas de la industria para garantizar la calidad de nuestros productos:</p>
+            <div class="brands-container">
+                <div class="brand-card">
+                    <h3>Makita</h3>
+                        <img src="{% static 'images/makita.jpg' %}" alt="Logo Makita">
+                    <p>Herramientas de alta calidad para profesionales y aficionados</p>
+                </div>
+                <div class="brand-card">
+                    <h3>Behr</h3>
+                        <img src="{% static 'images/behr.jpg' %}" alt="Logo Behr">
+                    <p>Pinturas y recubrimientos profesionales</p>
+                </div>
+                <div class="brand-card">
+                    <h3>Würth</h3>
+                        <img src="{% static 'images/wurth.jpg' %}" alt="Logo Würth">
+                    <p>Sistemas de montaje, químicos y herramientas especializadas</p>
+                </div>
+            </div>
+        </div>
+        
+        <a href="/" class="back-link">← Volver a Inicio</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Ferretería Pinto - Todos los derechos reservados</p>
+        <p>Teléfono: +56 9 12345678 | Email: contacto@ferreteriapinto.cl</p>
+        <p>Dirección: Avenida España 123, Valparaíso, Chile</p>
+        <div class="footer-links">
+            <a href="/">Inicio</a>
+            <a href="/negocio/">Negocio</a>
+            <a href="/categorias/">Categorías</a>
+        </div>
+    </footer>
+</body>
+</html>

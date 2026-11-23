@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <title>Eliminar producto - Ferreteria Pinto</title>
+</head>
+<body>
+<header><h1>Eliminar producto</h1></header>
+<main class="container">
+    <p>Confirma que deseas eliminar <strong>{{ producto.nombre }}</strong>?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar eliminacion</button>
+        <a href="{% url 'categorias:acceso' %}">Cancelar</a>
+    </form>
+</main>
+</body>
+</html>

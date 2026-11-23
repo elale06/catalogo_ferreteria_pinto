@@ -1,0 +1,173 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen de Inventario - Ferretería Pinto</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Resumen de Inventario - Ferretería Pinto</h1>
+    </header>
+    
+    <div class="container">
+        <div class="nav-links">
+            <a href="/">← Volver a Inicio</a>
+            <a href="/categorias/">Ver Catálogo Completo</a>
+        </div>
+        
+        <h2>Estadísticas Generales</h2>
+        
+        <div class="stats-grid">
+            <div class="stat-card info">
+                <h3>Total de Registros</h3>
+                <div class="value">{{ total_registros }}</div>
+                <p>Productos en el inventario</p>
+            </div>
+            
+            <div class="stat-card success">
+                <h3>Productos Disponibles</h3>
+                <div class="value">{{ productos_disponibles }}</div>
+                <p>Con stock en almacén</p>
+            </div>
+            
+            <div class="stat-card danger">
+                <h3>Productos Sin Stock</h3>
+                <div class="value">{{ productos_sin_stock }}</div>
+                <p>Requieren reposición</p>
+            </div>
+            
+            <div class="stat-card warning">
+                <h3>Stock Total</h3>
+                <div class="value">{{ stock_total }}</div>
+                <p>Unidades en inventario</p>
+            </div>
+            
+            <div class="stat-card info">
+                <h3>Valor del Inventario</h3>
+                <div class="value">${{ valor_inventario|floatformat:0 }}</div>
+                <p>Valor total en pesos</p>
+            </div>
+        </div>
+        
+        <h2>Productos Sin Stock (Destacados)</h2>
+        
+        {% if productos %}
+            {% with sin_stock=productos|dictsort:"stock" %}
+                {% if sin_stock %}
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for producto in productos %}
+                                {% if producto.stock == 0 %}
+                                <tr class="sin-stock">
+                                    <td>{{ producto.id }}</td>
+                                    <td><strong>{{ producto.nombre }}</strong></td>
+                                    <td>{{ producto.categoria }}</td>
+                                    <td class="precio-cell">
+                                        {% if producto.tiene_precio %}
+                                            {{ producto.moneda }} ${{ producto.precio|floatformat:0 }}
+                                        {% else %}
+                                            <span class="precio-pendiente">Por agregar</span>
+                                        {% endif %}
+                                    </td>
+                                    <td><strong>{{ producto.stock }}</strong></td>
+                                    <td>
+                                        <span class="estado-badge no-disponible">✗ Sin Stock</span>
+                                    </td>
+                                </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p style="color: green; font-weight: bold;">✓ Todos los productos tienen stock disponible</p>
+                {% endif %}
+            {% endwith %}
+        {% else %}
+            <p>No hay productos disponibles</p>
+        {% endif %}
+        
+        <h2>Resumen Completo de Inventario</h2>
+        
+        {% if productos %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Categoría</th>
+                        <th>Precio Unitario</th>
+                        <th>Stock</th>
+                        <th>Valor Total</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr {% if producto.stock == 0 %}class="sin-stock"{% endif %}>
+                        <td>{{ producto.id }}</td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.categoria }}</td>
+                        <td class="precio-cell">
+                            {% if producto.tiene_precio %}
+                                {{ producto.moneda }} ${{ producto.precio|floatformat:0 }}
+                            {% else %}
+                                <span class="precio-pendiente">Por agregar</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ producto.stock }}</td>
+                        <td>${{ producto.valor_total|floatformat:0 }}</td>
+                        <td>
+                            {% if producto.stock > 0 %}
+                                <span class="estado-badge disponible">✓ Disponible</span>
+                            {% else %}
+                                <span class="estado-badge no-disponible">✗ Sin Stock</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hay productos disponibles</p>
+        {% endif %}
+        
+        <div class="legend">
+            <h3 style="margin-bottom: 15px;">Leyenda de Colores</h3>
+            <div class="legend-item">
+                <strong style="background-color: #e6ffe6; padding: 5px 10px; border-radius: 3px;">Verde</strong>
+                Productos con stock disponible
+            </div>
+            <div class="legend-item">
+                <strong style="background-color: #ffe6e6; color: #c33; padding: 5px 10px; border-radius: 3px;">Rojo</strong>
+                Productos sin stock (requieren reposición)
+            </div>
+        </div>
+        
+        <a href="/" class="back-link">← Volver a Inicio</a>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Ferretería Pinto - Todos los derechos reservados</p>
+        <p>Teléfono: +56 9 12345678 | Email: contacto@ferreteriapinto.cl</p>
+        <div class="footer-links">
+            <a href="/">Inicio</a>
+            <a href="/negocio/">Negocio</a>
+            <a href="/categorias/">Categorías</a>
+        </div>
+    </footer>
+</body>
+</html>
