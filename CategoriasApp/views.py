@@ -2,10 +2,12 @@ from functools import wraps
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from decimal import Decimal
 
 from .forms import AccountCreationForm, PreciosForm, VolumenForm
@@ -20,6 +22,16 @@ def admin_required(view_func):
             raise PermissionDenied
         return view_func(request, *args, **kwargs)
     return wrapped
+
+
+class RoleBasedLoginView(LoginView):
+    template_name = 'registration/login.html'
+    redirect_authenticated_user = True
+
+    def get_success_url(self):
+        if self.request.user.is_superuser:
+            return reverse('categorias:acceso')
+        return reverse('secciones')
 
 
 def volumen(request) -> HttpResponse:

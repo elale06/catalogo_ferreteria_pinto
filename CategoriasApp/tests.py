@@ -2,9 +2,11 @@ from django.test import SimpleTestCase
 from django.urls import resolve, reverse
 from django.core.exceptions import PermissionDenied
 from django.test import RequestFactory
+from django.template import engines
 from types import SimpleNamespace
 
 from .api_views import IsAdminOrReadOnly
+from .views import RoleBasedLoginView
 from PrincipalApp.admin import admin_site
 
 
@@ -75,3 +77,24 @@ class CrudAuthenticationTests(SimpleTestCase):
 		request = SimpleNamespace(method='POST', user=admin_user)
 
 		self.assertTrue(permission.has_permission(request, None))
+
+	def test_login_redirects_staff_home_and_admin_to_management(self):
+		view = RoleBasedLoginView()
+		view.request = SimpleNamespace(user=SimpleNamespace(is_superuser=False))
+		self.assertEqual(view.get_success_url(), '/')
+
+		view.request = SimpleNamespace(user=SimpleNamespace(is_superuser=True))
+		self.assertEqual(view.get_success_url(), '/categorias/acceso/')
+
+	def test_navigation_shows_the_icon_for_each_role(self):
+		template = engines['django'].from_string(
+			"{% include 'nav_principal.html' %}"
+		)
+		request = SimpleNamespace(path='/')
+		for user, icon in (
+			(SimpleNamespace(is_authenticated=True, is_staff=True, is_superuser=False, get_username=lambda: 'staff'), 'staff.png'),
+			(SimpleNamespace(is_authenticated=True, is_staff=True, is_superuser=True, get_username=lambda: 'admin'), 'admin.png'),
+		):
+			with self.subTest(icon=icon):
+				rendered = template.render({'user': user, 'request': request})
+				self.assertIn(f'iconos_usuarios/{icon}', rendered)

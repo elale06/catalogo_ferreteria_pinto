@@ -9,10 +9,7 @@ urlpatterns = [
     path('resumen/', views.resumen, name='resumen'),
     path('acceso/', views.acceso, name='acceso'),
     path('usuarios/crear/', views.crear_usuario, name='crear_usuario'),
-    path('login/', auth_views.LoginView.as_view(
-        template_name='registration/login.html',
-        redirect_authenticated_user=True,
-    ), name='login'),
+    path('login/', views.RoleBasedLoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('productos/', views.listar, name='listar'),
     path('productos/crear/', views.crear, name='crear'),

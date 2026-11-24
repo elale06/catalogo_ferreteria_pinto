@@ -30,3 +30,11 @@ Prompt: Necesito que el proyecto tenga la función de crear Admin o Staff. El Ad
 Respuesta: 
 
 Reflexión: 
+
+## PROMPT 4
+
+Prompt: Al momento de inicar sesión como Staff el proyecto debería de enviarte a la página principal (http://127.0.0.1:8000/) y no a 'http://127.0.0.1:8000/categorias/acceso/', pues dicha página ahora solo muestra '403 Forbidden' y el usuario se podría confundir. Sería un buen detalle que al lado del usuario logeado aparezca un ícono correspondiente a su rol (en static/images/iconos_usuarios/).
+
+Respuesta: 
+
+Reflexión: 

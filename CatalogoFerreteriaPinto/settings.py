@@ -86,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LOGIN_URL = 'categorias:login'
-LOGIN_REDIRECT_URL = 'categorias:acceso'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'categorias:login'
 
 REST_FRAMEWORK = {

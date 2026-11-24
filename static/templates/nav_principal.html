@@ -1,3 +1,4 @@
+{% load static %}
 <nav class="site-nav" aria-label="Navegación principal">
     <a href="/" {% if request.path == '/' %}class="is-current" aria-current="page"{% endif %}>Inicio</a>
     <a href="/negocio/" {% if request.path == '/negocio/' %}class="is-current" aria-current="page"{% endif %}>Negocio</a>
@@ -6,7 +7,11 @@
     {% if user.is_authenticated and user.is_staff and not user.is_superuser %}<a href="{% url 'categorias:listar' %}" {% if request.path == '/categorias/productos/' %}class="is-current" aria-current="page"{% endif %}>Listado</a>{% endif %}
     {% if user.is_authenticated and user.is_superuser %}<a href="{% url 'categorias:acceso' %}" {% if '/categorias/acceso/' in request.path or '/categorias/productos/' in request.path %}class="is-current" aria-current="page"{% endif %}>Gestión</a>{% endif %}
     {% if user.is_authenticated %}
-    <span class="nav-user">{{ user.get_username }}</span>
+    <span class="nav-user">
+        {% if user.is_superuser %}<img class="nav-user-icon" src="{% static 'images/iconos_usuarios/admin.png' %}" alt="Admin" title="Admin">
+        {% elif user.is_staff %}<img class="nav-user-icon" src="{% static 'images/iconos_usuarios/staff.png' %}" alt="Staff" title="Staff">{% endif %}
+        {{ user.get_username }}
+    </span>
     <form class="nav-logout" method="post" action="{% url 'categorias:logout' %}">{% csrf_token %}<button type="submit">Cerrar sesión</button></form>
     {% else %}
     <a href="{% url 'categorias:login' %}">Iniciar sesión</a>
