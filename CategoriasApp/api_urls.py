@@ -1,5 +1,4 @@
 from rest_framework.routers import DefaultRouter
-
 from .api_views import PreciosViewSet, VolumenViewSet
 
 router = DefaultRouter()
