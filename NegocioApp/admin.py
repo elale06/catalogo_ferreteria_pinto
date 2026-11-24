@@ -1,8 +1,9 @@
 from django.contrib import admin
+from PrincipalApp.admin import admin_site
 from .models import Consulta
 
 
-@admin.register(Consulta)
+@admin.register(Consulta, site=admin_site)
 class ConsultaAdmin(admin.ModelAdmin):
 	list_display = ('nombre', 'email', 'telefono', 'asunto', 'creada_en')
 	list_filter = ('creada_en',)

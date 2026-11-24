@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <title>Crear usuario - Ferretería Pinto</title>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="brand" href="/">Ferretería <span>Pinto</span></a>{% include "nav_principal.html" %}</div></header>
+<main class="container auth-container">
+    <div class="page-heading"><div><p class="eyebrow">Administración de cuentas</p><h1>Crear Staff o Admin</h1><p class="muted">Elige el nivel de acceso que tendrá esta cuenta.</p></div></div>
+    <form method="post">
+        {% csrf_token %}
+        {% if formulario.errors %}<div class="form-errors">Revisa los datos y las indicaciones de seguridad de contraseña.</div>{% endif %}
+        {{ formulario.as_p }}
+        <div class="form-actions"><button class="button button-primary" type="submit">Crear usuario</button><a class="button button-ghost" href="{% url 'categorias:acceso' %}">Cancelar</a></div>
+    </form>
+</main>
+</body>
+</html>

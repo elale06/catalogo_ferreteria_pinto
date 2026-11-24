@@ -1,13 +1,26 @@
+from functools import wraps
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from decimal import Decimal
 
-from .forms import PreciosForm, VolumenForm
+from .forms import AccountCreationForm, PreciosForm, VolumenForm
 from .models import Precios, Volumen
+
+
+def admin_required(view_func):
+    @wraps(view_func)
+    @login_required
+    def wrapped(request, *args, **kwargs):
+        if not request.user.is_superuser:
+            raise PermissionDenied
+        return view_func(request, *args, **kwargs)
+    return wrapped
+
 
 def volumen(request) -> HttpResponse:
     """
@@ -60,19 +73,20 @@ def resumen(request) -> HttpResponse:
     return render(request, 'resumen.html', context)
 
 
-@login_required
+@admin_required
 def acceso(request) -> HttpResponse:
     """Panel para listar y gestionar los productos registrados."""
     return render(request, 'acceso.html', {'productos': _productos_con_precio()})
 
 
-def registro(request) -> HttpResponse:
-    formulario = UserCreationForm(request.POST or None)
+@admin_required
+def crear_usuario(request) -> HttpResponse:
+    formulario = AccountCreationForm(request.POST or None)
     if request.method == 'POST' and formulario.is_valid():
-        formulario.save()
-        messages.success(request, 'Cuenta creada. Ya puedes iniciar sesión.')
-        return redirect('categorias:login')
-    return render(request, 'registration/registro.html', {'formulario': formulario})
+        usuario = formulario.save()
+        messages.success(request, f'Cuenta {usuario.username} creada con rol {formulario.cleaned_data["role"]}.')
+        return redirect('categorias:acceso')
+    return render(request, 'registration/crear_usuario.html', {'formulario': formulario})
 
 
 @login_required
@@ -80,7 +94,7 @@ def listar(request) -> HttpResponse:
     return render(request, 'listar.html', {'productos': _productos_con_precio()})
 
 
-@login_required
+@admin_required
 def crear(request) -> HttpResponse:
     formulario = VolumenForm(request.POST or None)
     formulario_precio = PreciosForm(request.POST or None)
@@ -97,7 +111,7 @@ def crear(request) -> HttpResponse:
     return render(request, 'crear.html', {'formulario': formulario, 'formulario_precio': formulario_precio})
 
 
-@login_required
+@admin_required
 def actualizar(request, producto_id) -> HttpResponse:
     producto = get_object_or_404(Volumen, pk=producto_id)
     formulario = VolumenForm(request.POST or None, instance=producto)
@@ -115,7 +129,7 @@ def actualizar(request, producto_id) -> HttpResponse:
     return render(request, 'actualizar.html', {'formulario': formulario, 'formulario_precio': formulario_precio, 'producto': producto})
 
 
-@login_required
+@admin_required
 def eliminar(request, producto_id) -> HttpResponse:
     producto = get_object_or_404(Volumen, pk=producto_id)
     if request.method == 'POST':

@@ -25,7 +25,7 @@ Reflexión:
 
 ## PROMPT 3
 
-Prompt: 
+Prompt: Necesito que el proyecto tenga la función de crear Admin o Staff. El Admin puede ver y editar todo, mientras que el Staff solo puede ver ciertas cosas (como por ejemplo solo ver listado de productos y páginas principales, pero no puede tener acceso al CRUD (y no debería de ver la opción en nav)).
 
 Respuesta: 
 

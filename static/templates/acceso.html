@@ -11,7 +11,7 @@
 <header class="site-header"><div class="header-inner"><a class="brand" href="/">Ferretería <span>Pinto</span></a>{% include "nav_principal.html" %}</div></header>
 <main class="container">
     {% for message in messages %}<p class="success-message">{{ message }}</p>{% endfor %}
-    <div class="page-heading"><div><p class="eyebrow">Administración · {{ user.get_username }}</p><h1>Gestionar productos</h1><p class="muted">Controla inventario y precios desde un único lugar.</p></div><a class="button button-primary" href="{% url 'categorias:crear' %}">Nuevo producto</a></div>
+    <div class="page-heading"><div><p class="eyebrow">Administración · {{ user.get_username }}</p><h1>Gestionar productos</h1><p class="muted">Controla inventario y precios desde un único lugar.</p></div><div class="page-actions"><a class="button button-ghost" href="{% url 'categorias:crear_usuario' %}">Crear Staff/Admin</a><a class="button button-primary" href="{% url 'categorias:crear' %}">Nuevo producto</a></div></div>
     {% if productos %}
     <div class="table-wrap"><table>
         <thead><tr><th>Codigo</th><th>Producto</th><th>Categoria</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead>

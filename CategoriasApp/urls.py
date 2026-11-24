@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.volumen, name='volumen'),
     path('resumen/', views.resumen, name='resumen'),
     path('acceso/', views.acceso, name='acceso'),
-    path('registro/', views.registro, name='registro'),
+    path('usuarios/crear/', views.crear_usuario, name='crear_usuario'),
     path('login/', auth_views.LoginView.as_view(
         template_name='registration/login.html',
         redirect_authenticated_user=True,

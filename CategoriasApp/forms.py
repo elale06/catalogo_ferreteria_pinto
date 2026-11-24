@@ -1,6 +1,33 @@
 from django import forms
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
 
 from .models import Precios, Volumen
+
+
+class AccountCreationForm(UserCreationForm):
+    role = forms.ChoiceField(
+        choices=(('staff', 'Staff'), ('admin', 'Admin')),
+        label='Rol',
+    )
+
+    class Meta(UserCreationForm.Meta):
+        model = get_user_model()
+        fields = ('username', 'first_name', 'last_name', 'email')
+        labels = {
+            'username': 'Nombre de usuario',
+            'first_name': 'Nombre',
+            'last_name': 'Apellido',
+            'email': 'Correo electrónico',
+        }
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.is_staff = True
+        user.is_superuser = self.cleaned_data['role'] == 'admin'
+        if commit:
+            user.save()
+        return user
 
 
 class VolumenForm(forms.ModelForm):

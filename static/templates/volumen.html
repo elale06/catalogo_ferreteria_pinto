@@ -14,7 +14,7 @@
     </header>
     
     <main class="container">
-        <div class="page-heading"><div><p class="eyebrow">Catálogo</p><h1>Productos de ferretería</h1><p class="muted">Consulta precios, disponibilidad y existencias.</p></div><div class="page-actions"><a class="button button-ghost" href="{% url 'categorias:resumen' %}">Ver resumen</a><a class="button button-primary" href="{% url 'categorias:acceso' %}">Administrar inventario</a></div></div>
+        <div class="page-heading"><div><p class="eyebrow">Catálogo</p><h1>Productos de ferretería</h1><p class="muted">Consulta precios, disponibilidad y existencias.</p></div><div class="page-actions"><a class="button button-ghost" href="{% url 'categorias:resumen' %}">Ver resumen</a>{% if user.is_authenticated and user.is_superuser %}<a class="button button-primary" href="{% url 'categorias:acceso' %}">Administrar inventario</a>{% endif %}</div></div>
         
         {% if productos %}
             <p>Total de productos: <strong>{{ productos|length }}</strong></p>
