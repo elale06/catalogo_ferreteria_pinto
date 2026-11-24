@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/site.css' %}">
+    <title>Iniciar sesión - Ferretería Pinto</title>
+</head>
+<body>
+<header class="site-header"><div class="header-inner"><a class="brand" href="/">Ferretería <span>Pinto</span></a></div></header>
+<main class="container auth-container">
+    <div class="page-heading"><div><p class="eyebrow">Gestión de inventario</p><h1>Iniciar sesión</h1><p class="muted">Ingresa con tu cuenta para acceder al CRUD.</p></div></div>
+    {% for message in messages %}<p class="success-message">{{ message }}</p>{% endfor %}
+    {% if form.errors %}<div class="form-errors">Usuario o contraseña incorrectos.</div>{% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <div class="form-actions"><button class="button button-primary" type="submit">Iniciar sesión</button><a class="button button-ghost" href="{% url 'categorias:registro' %}">Crear cuenta</a></div>
+    </form>
+</main>
+</body>
+</html>

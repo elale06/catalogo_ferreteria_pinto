@@ -1075,6 +1075,11 @@ footer { margin-top: 44px; padding: 30px 20px; }
 .site-nav a:hover { color: #fff; background: rgba(255,255,255,.13); }
 .site-nav a.is-current { color: #23332c; background: var(--amber); }
 .site-nav a:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.nav-user { padding: 8px 10px; color: #e4eee8; font-size: .9rem; }
+.nav-logout { margin: 0; }
+.nav-logout button { min-height: 38px; padding: 7px 10px; border: 0; color: #fff; background: transparent; font-size: .9rem; }
+.nav-logout button:hover { color: #fff; background: rgba(255,255,255,.13); }
+.auth-container { max-width: 720px; }
 .site-header-home .site-nav { padding: 0 16px 14px; }
 .home-heading { margin: 0 0 18px; }
 .home-heading h2 { margin: 0; border: 0; font-size: 1.5rem; }

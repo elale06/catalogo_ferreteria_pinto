@@ -47,6 +47,14 @@
                     <li>Domingo: Cerrado</li>
                 </ul>
             </div>
+            {% for message in messages %}<p class="success-message">{{ message }}</p>{% endfor %}
+            <form method="post" action="{% url 'informaciones' %}">
+                {% csrf_token %}
+                <h3>Envíanos una consulta</h3>
+                {% if formulario.errors %}<div class="form-errors">Revisa los campos marcados antes de continuar.</div>{% endif %}
+                {{ formulario.as_p }}
+                <button class="button button-primary" type="submit">Enviar consulta</button>
+            </form>
         </div>
         
         <div class="section">

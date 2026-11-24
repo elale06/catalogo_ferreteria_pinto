@@ -1,3 +1,4 @@
 Django>=5.2.8,<5.3
 PyMySQL>=1.2
 MySQL
+djangorestframework>=3.16,<4
