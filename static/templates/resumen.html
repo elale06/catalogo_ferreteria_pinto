@@ -58,7 +58,7 @@
         {% if productos %}
             {% with sin_stock=productos|dictsort:"stock" %}
                 {% if sin_stock %}
-                    <table>
+                    <div class="table-wrap"><table>
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -91,7 +91,7 @@
                                 {% endif %}
                             {% endfor %}
                         </tbody>
-                    </table>
+                    </table></div>
                 {% else %}
                     <p style="color: green; font-weight: bold;">✓ Todos los productos tienen stock disponible</p>
                 {% endif %}
@@ -103,7 +103,7 @@
         <h2>Resumen Completo de Inventario</h2>
         
         {% if productos %}
-            <table>
+            <div class="table-wrap"><table>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -140,7 +140,7 @@
                     </tr>
                     {% endfor %}
                 </tbody>
-            </table>
+            </table></div>
         {% else %}
             <p>No hay productos disponibles</p>
         {% endif %}

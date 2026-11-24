@@ -22,7 +22,7 @@
         
         {% if productos %}
             <p>Total de productos: <strong>{{ productos|length }}</strong></p>
-            <table>
+            <div class="table-wrap"><table>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -57,7 +57,7 @@
                     </tr>
                     {% endfor %}
                 </tbody>
-            </table>
+            </table></div>
         {% else %}
             <p>No hay productos disponibles</p>
         {% endif %}
