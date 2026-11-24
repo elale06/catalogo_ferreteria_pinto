@@ -4,9 +4,9 @@
 ---
 
 ### DATOS SUPER USUARIO
-- Usuario: usuario
-- Contraseña: 123456789
-- Correo: usuario@inacap.cl
+- Usuario: admin
+- Contraseña: admin.2026
+- Correo: admin@gmail.com
 
 ---
 
