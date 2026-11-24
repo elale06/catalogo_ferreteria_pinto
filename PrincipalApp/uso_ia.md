@@ -10,9 +10,9 @@
 
 Prompt: Necesito que mejores visualmente absolutamente TODO el proyecto con tal de que tenga aspecto de sitio web de una ferreteria real y que dicho estilo sea atractivo y comodo para el usuario. Asegúrate de que no hayan errores visuales como por ejemplo el cuadro de valor total de inventario (imagen adjunta).
 
-Respuesta: 
+Respuesta: La IA corregió errores visuales y mejoró absolutamente todas las páginas del proyecto con tal de que cada una sea atractiva y fácil de entender para el usuario.
 
-Reflexión: 
+Reflexión: Me ayudó a poder corregir errores de los cuáles no tenía idea de como mejorarlo  (como el valor total del inventario).
 
 ## PROMPT 2
 
@@ -23,4 +23,10 @@ Respuesta:
 
 Reflexión: 
 
----
+## PROMPT 3
+
+Prompt: 
+
+Respuesta: 
+
+Reflexión: 
