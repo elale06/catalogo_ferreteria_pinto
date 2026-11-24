@@ -8,10 +8,10 @@
     <title>Gestionar productos - Ferreteria Pinto</title>
 </head>
 <body>
-<header class="site-header"><div class="header-inner"><a class="brand" href="{% url 'categorias:volumen' %}">Pinto<span>.</span></a><span class="header-tag">Panel de inventario</span></div></header>
+<header class="site-header"><div class="header-inner"><a class="brand" href="/">Ferretería <span>Pinto</span></a>{% include "nav_principal.html" %}</div></header>
 <main class="container">
     {% for message in messages %}<p class="success-message">{{ message }}</p>{% endfor %}
-    <div class="page-heading"><div><p class="eyebrow">Administración</p><h1>Gestionar productos</h1><p class="muted">Controla inventario y precios desde un único lugar.</p></div><a class="button button-primary" href="{% url 'categorias:crear' %}">+ Nuevo producto</a></div>
+    <div class="page-heading"><div><p class="eyebrow">Administración</p><h1>Gestionar productos</h1><p class="muted">Controla inventario y precios desde un único lugar.</p></div><a class="button button-primary" href="{% url 'categorias:crear' %}">Nuevo producto</a></div>
     {% if productos %}
     <div class="table-wrap"><table>
         <thead><tr><th>Codigo</th><th>Producto</th><th>Categoria</th><th>Precio</th><th>Stock</th><th>Acciones</th></tr></thead>
@@ -19,7 +19,7 @@
         {% for producto in productos %}
         <tr>
             <td class="code">#{{ producto.id }}</td><td><strong>{{ producto.nombre }}</strong></td><td>{{ producto.categoria }}</td><td class="price">{% if producto.tiene_precio %}{{ producto.moneda }} ${{ producto.precio|floatformat:0 }}{% else %}<span class="precio-pendiente">Sin precio</span>{% endif %}</td><td><span class="stock {% if producto.stock == 0 %}stock-empty{% endif %}">{{ producto.stock }}</span></td>
-            <td><a href="{% url 'categorias:actualizar' producto.id %}">Actualizar</a> | <a href="{% url 'categorias:eliminar' producto.id %}">Eliminar</a></td>
+            <td><div class="table-actions"><a class="table-action" aria-label="Editar {{ producto.nombre }}" href="{% url 'categorias:actualizar' producto.id %}">Editar</a><a class="table-action table-action-danger" aria-label="Eliminar {{ producto.nombre }}" href="{% url 'categorias:eliminar' producto.id %}">Eliminar</a></div></td>
         </tr>
         {% endfor %}
         </tbody>

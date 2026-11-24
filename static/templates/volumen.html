@@ -9,16 +9,12 @@
     
 </head>
 <body>
-    <header>
-        <h1>Catálogo de Productos - Ferretería Pinto</h1>
+    <header class="site-header">
+        <div class="header-inner"><a class="brand" href="/">Ferretería <span>Pinto</span></a>{% include "nav_principal.html" %}</div>
     </header>
     
-    <div class="container">
-        <div class="nav-links">
-            <a href="/">← Volver a Inicio</a>
-            <a href="/categorias/resumen/">Ver Resumen</a>
-            <a href="{% url 'categorias:acceso' %}">Gestionar Productos</a>
-        </div>
+    <main class="container">
+        <div class="page-heading"><div><p class="eyebrow">Catálogo</p><h1>Productos de ferretería</h1><p class="muted">Consulta precios, disponibilidad y existencias.</p></div><div class="page-actions"><a class="button button-ghost" href="{% url 'categorias:resumen' %}">Ver resumen</a><a class="button button-primary" href="{% url 'categorias:acceso' %}">Administrar inventario</a></div></div>
         
         {% if productos %}
             <p>Total de productos: <strong>{{ productos|length }}</strong></p>
@@ -62,17 +58,11 @@
             <p>No hay productos disponibles</p>
         {% endif %}
         
-        <a href="/" class="back-link">← Volver a Inicio</a>
-    </div>
+    </main>
     
     <footer>
         <p>&copy; 2026 Ferretería Pinto - Todos los derechos reservados</p>
         <p>Teléfono: +56 9 12345678 | Email: contacto@ferreteriapinto.cl</p>
-        <div class="footer-links">
-            <a href="/">Inicio</a>
-            <a href="/negocio/">Negocio</a>
-            <a href="/categorias/">Categorías</a>
-        </div>
     </footer>
 </body>
 </html>

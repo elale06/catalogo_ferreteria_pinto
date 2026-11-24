@@ -8,7 +8,7 @@
     <title>Crear producto - Ferreteria Pinto</title>
 </head>
 <body>
-<header class="site-header"><div class="header-inner"><a class="brand" href="{% url 'categorias:volumen' %}">Pinto<span>.</span></a><span class="header-tag">Panel de inventario</span></div></header>
+<header class="site-header"><div class="header-inner"><a class="brand" href="/">Ferretería <span>Pinto</span></a>{% include "nav_principal.html" %}</div></header>
 <main class="container">
     <div class="page-heading"><div><p class="eyebrow">Nuevo registro</p><h1>Crear producto</h1><p class="muted">Añade el producto y su precio de venta en un solo paso.</p></div><a class="button button-ghost" href="{% url 'categorias:acceso' %}">Volver a gestión</a></div>
     <form method="post">

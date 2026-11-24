@@ -9,15 +9,12 @@
     
 </head>
 <body>
-    <header>
-        <h1>Resumen de Inventario - Ferretería Pinto</h1>
+    <header class="site-header">
+        <div class="header-inner"><a class="brand" href="/">Ferretería <span>Pinto</span></a>{% include "nav_principal.html" %}</div>
     </header>
     
-    <div class="container">
-        <div class="nav-links">
-            <a href="/">← Volver a Inicio</a>
-            <a href="/categorias/">Ver Catálogo Completo</a>
-        </div>
+    <main class="container">
+        <div class="page-heading"><div><p class="eyebrow">Inventario</p><h1>Resumen de inventario</h1><p class="muted">Indicadores de existencias y valoración actual.</p></div></div>
         
         <h2>Estadísticas Generales</h2>
         
@@ -157,17 +154,11 @@
             </div>
         </div>
         
-        <a href="/" class="back-link">← Volver a Inicio</a>
-    </div>
+    </main>
     
     <footer>
         <p>&copy; 2026 Ferretería Pinto - Todos los derechos reservados</p>
         <p>Teléfono: +56 9 12345678 | Email: contacto@ferreteriapinto.cl</p>
-        <div class="footer-links">
-            <a href="/">Inicio</a>
-            <a href="/negocio/">Negocio</a>
-            <a href="/categorias/">Categorías</a>
-        </div>
     </footer>
 </body>
 </html>

@@ -1,0 +1,7 @@
+<nav class="site-nav" aria-label="Navegación principal">
+    <a href="/" {% if request.path == '/' %}class="is-current" aria-current="page"{% endif %}>Inicio</a>
+    <a href="/negocio/" {% if request.path == '/negocio/' %}class="is-current" aria-current="page"{% endif %}>Negocio</a>
+    <a href="{% url 'categorias:volumen' %}" {% if request.path == '/categorias/' %}class="is-current" aria-current="page"{% endif %}>Catálogo</a>
+    <a href="{% url 'categorias:resumen' %}" {% if request.path == '/categorias/resumen/' %}class="is-current" aria-current="page"{% endif %}>Resumen</a>
+    <a href="{% url 'categorias:acceso' %}" {% if '/categorias/acceso/' in request.path or '/categorias/productos/' in request.path %}class="is-current" aria-current="page"{% endif %}>Gestión</a>
+</nav>
